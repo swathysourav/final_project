@@ -1,0 +1,20 @@
+{% extends 'movie/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class=" row">
+        {% for i in posts %}
+            <div class="col-md-3"><div style="padding-top: 20px class="card" style="width: 18rem;">
+                <img src="" class="card-img-top" alt="no image" width="100px" height="100px">
+                <div style="margin-bottom: 20px class="card-body">
+
+                <p class="card-text">{{i.review_user}}</p>
+                    <p class="card-text">{{i.review}}</p>
+                <p class="card-text">{{i.created_at}}</p>
+                <p class="card-text">{{i.rating}}</p>
+            </div>
+        {% endfor %}
+            </div>
+        </div>
+
+{% endblock content %}

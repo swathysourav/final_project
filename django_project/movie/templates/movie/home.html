@@ -1,0 +1,41 @@
+{% extends 'movie/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+    {% for i in posts %}
+        <div class="col-md-3 text-center">
+        <div class="card" style="width: 18rem;">
+        <div class="card-body" >
+
+            <img src={{i.movie_image.url}} class="card-img-top"  alt="Card image cap" height="100px" width="100px">
+            <h5 class="card-title">{{i.movie_title}}</h5></a>
+            <p class="card-text">{{i.movie_description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{i.actors}}</li>
+            <li class="list-group-item">{{i.release_date}}</li>
+        </ul>
+  <div class="card-body">
+    <a href="{{i.youtube}}" class="card-link">Watch Trailer</a>
+      <a href="{% url 'post-detail' i.id %}" class="card-link">Details</a>
+</div>
+  </div>
+    </div>
+
+    {% endfor %}
+        </div>
+</div>
+<div>
+    <p style="text-align:center">page{{page_obj.num}} of {{page_obj.paginator.num_pages}}</p>
+</div>
+<ul style="text-center" class="pagination">
+    {% if page_obj.has_previous %}
+    <li><a href="?page=1">&laquo;First</a></li>
+     <li><a href="?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number}}previous</a></li>
+    {% endif %}
+</ul>
+{% if page_obj.has_next %}
+<li><a href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a></li>
+{% endif %}
+    {% endblock content %}
